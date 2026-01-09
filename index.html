@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dumb AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chatbox {
+      width: 350px;
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .messages {
+      height: 250px;
+      overflow-y: auto;
+      background: #000;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .user {
+      color: #4fc3f7;
+      margin-bottom: 5px;
+    }
+
+    .bot {
+      color: #ff5252;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chatbox">
+    <h3>Dumb AI 🤖</h3>
+    <div class="messages" id="messages"></div>
+    <input type="text" id="input" placeholder="Say something dumb..." />
+  </div>
+
+  <script>
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("input");
+
+    const dumbResponses = [
+      "I have no idea what you just said.",
+      "That sounds like a sandwich problem.",
+      "Beep boop. Brain empty.",
+      "I asked my brain and it said no.",
+      "Yes. Or maybe no. Probably potato.",
+      "I would answer, but I forgot how.",
+      "Interesting... but also not.",
+      "I am 3% sure that is wrong.",
+      "Error 404: Intelligence not found."
+    ];
+
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && input.value.trim() !== "") {
+        const userText = input.value;
+
+        messages.innerHTML += `<div class="user">You: ${userText}</div>`;
+
+        const randomReply =
+          dumbResponses[Math.floor(Math.random() * dumbResponses.length)];
+
+        setTimeout(() => {
+          messages.innerHTML += `<div class="bot">Dumb AI: ${randomReply}</div>`;
+          messages.scrollTop = messages.scrollHeight;
+        }, 500);
+
+        input.value = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
